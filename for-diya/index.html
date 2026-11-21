@@ -1483,23 +1483,68 @@ openJar.addEventListener('click',pickFuturePlan);
 anotherReason.addEventListener('click',pickFuturePlan);
 
 
-/* FINAL QUESTION */
 
-document.getElementById('yesChoice').addEventListener('click',()=>{
+/* FINAL QUESTION + NETLIFY FORMS */
 
-document.getElementById('finalResponse').textContent =
-"That means a lot to me. Let's take this new beginning one beautiful day at a time. ♡";
+async function sendDiyaResponse(answer) {
 
+  const formData = new URLSearchParams();
+
+  formData.append("form-name", "diya-response");
+  formData.append("response", answer);
+  formData.append("submitted-at", new Date().toLocaleString());
+
+  const yesButton = document.getElementById('yesChoice');
+  const timeButton = document.getElementById('timeChoice');
+
+  yesButton.disabled = true;
+  timeButton.disabled = true;
+
+  try {
+    const result = await fetch("/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      body: formData.toString()
+    });
+
+    if (!result.ok) {
+      throw new Error("Submission failed");
+    }
+
+    if (answer === "Yes, let's give us a chance") {
+      document.getElementById('finalResponse').textContent =
+      "That means a lot to me. Let's take this new beginning one beautiful day at a time. ♡";
+    } else {
+      document.getElementById('finalResponse').textContent =
+      "That's okay take the time you need. Your feelings matter to me, and I won't rush you. 🥹 ♡";
+    }
+
+  } catch (error) {
+    alert("Response send nahi ho paya. Please try again.");
+    yesButton.disabled = false;
+    timeButton.disabled = false;
+  }
+}
+
+document.getElementById('yesChoice').addEventListener('click', () => {
+  sendDiyaResponse("Yes, let's give us a chance");
 });
 
-document.getElementById('timeChoice').addEventListener('click',()=>{
-
-document.getElementById('finalResponse').textContent =
-"That's okay take the time you need. Your feelings matter to me, and I won't rush just tell me how much🥹. ♡";
-
+document.getElementById('timeChoice').addEventListener('click', () => {
+  sendDiyaResponse("I need a little time");
 });
+
 
 </script>
+
+  <!-- NETLIFY FORM -->
+<form name="diya-response" method="POST" data-netlify="true" hidden>
+  <input type="hidden" name="form-name" value="diya-response">
+  <input type="hidden" name="response">
+  <input type="hidden" name="submitted-at">
+</form>
 
 </body>
 </html>
