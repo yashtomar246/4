@@ -1,0 +1,1505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Little Book About Us ♡</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+--cream:#fffaf4;
+--pink:#e8a9bd;
+--dark-pink:#bd718f;
+--text:#6e5965;
+--muted:#a28d98;
+--paper:#fffdf9;
+}
+
+html{scroll-behavior:smooth}
+
+body{
+min-height:100vh;
+background:var(--cream);
+color:var(--text);
+font-family:'DM Sans',sans-serif;
+}
+
+button{font:inherit;cursor:pointer}
+
+.app{
+min-height:100vh;
+display:flex;
+flex-direction:column;
+background:
+radial-gradient(circle at 10% 10%,#fce8ee 0,transparent 30%),
+radial-gradient(circle at 90% 90%,#f7e7dd 0,transparent 30%),
+var(--cream);
+}
+
+.topbar{
+height:48px;
+flex-shrink:0;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 5vw;
+border-bottom:1px solid #eadde0;
+font-size:9px;
+letter-spacing:2px;
+}
+
+.brand{font-weight:700}
+.top-label{color:var(--muted)}
+
+.screens{
+width:100%;
+position:relative;
+overflow:hidden;
+flex:1;
+}
+
+.screen{
+display:none;
+min-height:calc(100vh - 48px);
+width:100%;
+overflow-y:auto;
+padding:38px 20px 55px;
+text-align:center;
+animation:appear .35s ease;
+}
+
+.screen.active{
+display:flex;
+flex-direction:column;
+align-items:center;
+}
+
+@keyframes appear{
+from{opacity:0;transform:translateY(8px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+.eyebrow{
+font-size:10px;
+letter-spacing:3px;
+color:var(--dark-pink);
+margin-bottom:16px;
+}
+
+.home-content{
+width:100%;
+max-width:750px;
+margin:auto;
+position:relative;
+z-index:2;
+}
+
+.home-content h1{
+font-family:'Playfair Display',serif;
+font-size:clamp(48px,8vw,85px);
+line-height:1.08;
+font-weight:500;
+color:#705a68;
+}
+
+.home-content h1 em{
+display:block;
+color:var(--dark-pink);
+font-weight:400;
+}
+
+.home-description{
+max-width:440px;
+margin:20px auto;
+font-size:15px;
+line-height:1.8;
+color:var(--muted);
+}
+
+.envelope{
+width:190px;
+height:130px;
+margin:28px auto 15px;
+position:relative;
+background:#e5a3b8;
+box-shadow:0 12px 30px #dca3b840;
+}
+
+.envelope-back{
+position:absolute;
+inset:0;
+background:#f6d8e1;
+}
+
+.envelope-paper{
+position:absolute;
+width:75%;
+height:90%;
+left:12.5%;
+top:-15px;
+background:white;
+display:grid;
+place-items:center;
+font-size:35px;
+color:var(--dark-pink);
+}
+
+.envelope-front{
+position:absolute;
+inset:0;
+background:#e7a7ba;
+clip-path:polygon(0 0,50% 55%,100% 0,100% 100%,0 100%);
+}
+
+.envelope-heart{
+position:absolute;
+left:50%;
+top:50%;
+transform:translate(-50%,-25%);
+color:white;
+font-size:26px;
+z-index:2;
+}
+
+.handwritten{
+font-family:'Caveat',cursive;
+font-size:26px;
+color:var(--dark-pink);
+margin:12px 0 20px;
+}
+
+.primary-btn,.main-btn{
+border:0;
+border-radius:40px;
+padding:14px 27px;
+color:white;
+background:var(--dark-pink);
+font-weight:600;
+font-size:12px;
+letter-spacing:.3px;
+box-shadow:0 5px 15px #bd718f35;
+transition:.25s;
+}
+
+.primary-btn:hover,.main-btn:hover{
+background:#a95e7d;
+transform:translateY(-2px);
+}
+
+.decoration{
+position:absolute;
+color:var(--pink);
+pointer-events:none;
+}
+
+.flower{top:10%;left:12%;font-size:35px}
+.heart-decoration{top:25%;right:12%;font-size:40px}
+.home-star{bottom:15%;left:15%;font-size:35px}
+
+.section-heading{margin:5px 0 25px}
+
+.section-heading h2,.final-content h2{
+font-family:'Playfair Display',serif;
+font-size:clamp(36px,6vw,55px);
+font-weight:500;
+color:#705a68;
+margin-bottom:8px;
+}
+
+.section-heading p{
+color:var(--muted);
+font-size:13px;
+line-height:1.7;
+}
+
+/* MEMORIES */
+
+.memory-grid{
+width:100%;
+max-width:850px;
+display:grid;
+grid-template-columns:repeat(3,minmax(0,1fr));
+gap:22px;
+margin:5px auto 25px;
+}
+
+.photo-card{
+background:white;
+padding:9px 9px 22px;
+box-shadow:0 5px 18px #8d64701a;
+transform:rotate(-1deg);
+transition:.3s;
+}
+
+.photo-card:nth-child(even){transform:rotate(1.5deg)}
+
+.photo-card:hover{
+transform:rotate(0) translateY(-5px);
+}
+
+.photo-card img{
+display:block;
+width:100%;
+aspect-ratio:1;
+object-fit:cover;
+background:#f5dce4;
+}
+
+.photo-card span{
+display:block;
+padding-top:10px;
+font-family:'Caveat',cursive;
+font-size:19px;
+color:var(--text);
+}
+
+.continue-btn{margin:10px auto 5px}
+
+/* NOTES */
+
+.notes-grid{
+display:grid;
+grid-template-columns:repeat(3,minmax(0,1fr));
+gap:20px;
+width:100%;
+max-width:750px;
+margin:25px auto;
+}
+
+.note-card{
+min-height:175px;
+background:#fff;
+border:1px solid #f0d9e1;
+border-radius:8px;
+padding:20px 10px;
+box-shadow:0 7px 20px #b27a8b12;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+gap:10px;
+color:var(--text);
+transition:.25s;
+}
+
+.note-card:hover{
+transform:translateY(-5px);
+background:#fff4f7;
+}
+
+.note-card span{font-size:35px}
+
+.note-card strong{
+font-family:'Playfair Display',serif;
+font-size:17px;
+}
+
+.note-card small{
+color:var(--muted);
+font-size:10px;
+}
+
+/* DIARY */
+
+.diary-book{
+width:100%;
+max-width:700px;
+padding:12px;
+background:#efdde0;
+border-radius:5px;
+box-shadow:0 10px 35px #8b657025;
+}
+
+.diary-page{
+background:var(--paper);
+min-height:410px;
+max-height:65vh;
+padding:28px 38px;
+display:flex;
+flex-direction:column;
+text-align:left;
+border:1px solid #eee3dc;
+}
+
+.page-number{
+text-align:right;
+color:#b69da7;
+font-size:10px;
+letter-spacing:2px;
+}
+
+.diary-page h3{
+font-family:'Playfair Display',serif;
+font-size:29px;
+color:var(--dark-pink);
+margin:15px 0;
+}
+
+.page-content{
+font-size:19px;
+line-height:1.8;
+color:#76616b;
+overflow-y:auto;
+flex:1;
+padding-right:5px;
+}
+
+.page-content p{margin-bottom:16px}
+
+.page-signature{
+text-align:right;
+font-family:'Caveat',cursive;
+font-size:26px;
+color:var(--dark-pink);
+margin-top:15px;
+flex-shrink:0;
+}
+
+.diary-controls{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:13px 5px 2px;
+color:var(--text);
+font-size:11px;
+}
+
+.diary-controls button{
+border:0;
+background:transparent;
+color:var(--dark-pink);
+font-weight:600;
+padding:7px;
+}
+
+.diary-controls button:disabled{
+opacity:.35;
+cursor:not-allowed;
+}
+
+/* UNIVERSE */
+
+#universe{
+background:radial-gradient(ellipse at 50% 50%,#29234e,#100e27 85%);
+color:#fff5fc;
+gap:15px;
+}
+
+#universe .section-heading h2{color:#fff2fa}
+#universe .section-heading p{color:#c5b6d8}
+#universe .eyebrow{color:#d8b1e8}
+
+.universe-box{
+position:relative;
+width:min(650px,100%);
+height:min(48vh,350px);
+min-height:270px;
+border-radius:20px;
+overflow:hidden;
+background:
+radial-gradient(circle at 50% 50%,#41366a55,transparent 55%),
+linear-gradient(140deg,#211a43,#111027);
+border:1px solid #bba2d844;
+box-shadow:0 0 35px #a68be51c;
+}
+
+.moon{
+position:absolute;
+top:12%;
+right:15%;
+font-size:60px;
+color:#f7d9ed;
+text-shadow:0 0 25px #e5b7f9;
+}
+
+.universe-star{
+position:absolute;
+border:0;
+background:transparent;
+color:#fff0d7;
+font-size:27px;
+animation:twinkle 2s infinite alternate;
+filter:drop-shadow(0 0 7px #f5c8ff);
+z-index: 1;
+}
+
+.universe-star:hover{transform:scale(1.5)}
+
+.s1{top:20%;left:16%}
+.s2{top:35%;left:39%}
+.s3{top:18%;left:64%}
+.s4{top:58%;left:22%}
+.s5{top:48%;left:70%}
+.s6{top:40%;left:83%}
+.s7{top:60%;left:44%}
+.s8{top:15%;left:46%}
+
+@keyframes twinkle{
+from{opacity:.45}
+to{opacity:1}
+}
+
+.universe-message{
+position:absolute;
+bottom:12px;
+left:5%;
+width:90%;
+text-align:center;
+background:#ffffff13;
+border:1px solid #ffffff24;
+padding:10px;
+border-radius:12px;
+color:#fff1fb;
+font-family:'Caveat',cursive;
+font-size:19px;
+backdrop-filter:blur(8px);
+z-index: 2;
+}
+
+.universe-message span{color:#f7c8eb}
+#universe .main-btn{background:#8d70b7}
+
+/* FUTURE PLANS JAR */
+
+#jar{
+background:radial-gradient(circle at 50% 30%,#fff8f4,#f4e4ef);
+gap:12px;
+}
+
+.jar-area{
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+width:100%;
+max-width:520px;
+margin:auto;
+gap:12px;
+}
+
+.jar-count{
+font-size:11px;
+letter-spacing:1px;
+color:#ad8197;
+}
+
+.glass-jar{
+position:relative;
+width:135px;
+height:155px;
+border:0;
+background:transparent;
+transition:transform .3s;
+filter:drop-shadow(0 9px 10px #b77e9733);
+}
+
+.glass-jar:hover{
+transform:translateY(-6px) rotate(4deg);
+}
+
+.glass-jar:active{
+transform:scale(.94);
+}
+
+.jar-lid{
+position:absolute;
+top:3px;
+left:36px;
+width:63px;
+height:15px;
+background:#c58ca5;
+border-radius:5px 5px 2px 2px;
+}
+
+.jar-neck{
+position:absolute;
+top:15px;
+left:43px;
+width:49px;
+height:17px;
+background:#f9dfe9;
+border:2px solid #d5a4b8;
+border-bottom:0;
+}
+
+.jar-body{
+position:absolute;
+top:30px;
+left:15px;
+width:105px;
+height:117px;
+border:3px solid #d6a3b9;
+border-radius:22px 22px 30px 30px;
+background:linear-gradient(135deg,#ffffffb5,#f3cbdc88);
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+box-shadow:inset 0 0 20px #fff;
+}
+
+.jar-heart{font-size:35px;color:#bd7997}
+.jar-paper{font-size:13px;color:#a66b87}
+
+.jar-label{
+font:19px 'Caveat',cursive;
+color:#97677e;
+margin-top:4px;
+}
+
+.jar-instruction{
+font:18px 'Caveat',cursive;
+color:#aa8195;
+}
+
+.reason-card{
+width:min(380px,92%);
+min-height:100px;
+padding:17px;
+background:#fffaf3;
+border:1px solid #eed5df;
+border-radius:12px;
+text-align:center;
+box-shadow:0 7px 20px #b88da51b;
+opacity:0;
+transform:translateY(8px);
+transition:.3s;
+}
+
+.reason-card.show{
+opacity:1;
+transform:translateY(0);
+}
+
+.reason-card span{font-size:22px}
+
+.reason-card p{
+font:22px/1.4 'Caveat',cursive;
+color:#805c6d;
+margin:8px 0;
+}
+
+.reason-card small{
+font-size:9px;
+color:#b18b9d;
+}
+
+.jar-action{
+border:0;
+border-radius:40px;
+padding:14px 27px;
+color:white;
+background:var(--dark-pink);
+font-weight:600;
+font-size:12px;
+letter-spacing:.3px;
+box-shadow:0 5px 15px #bd718f35;
+transition:.25s;
+margin-top:5px;
+}
+
+.jar-action:hover{
+background:#a95e7d;
+transform:translateY(-2px);
+}
+
+.jar-footer{
+font:21px/1.5 'Caveat',cursive;
+color:#ad8197;
+margin-top:8px;
+}
+
+@keyframes jarShake{
+0%,100%{transform:rotate(0)}
+20%{transform:rotate(-10deg)}
+40%{transform:rotate(10deg)}
+60%{transform:rotate(-7deg)}
+80%{transform:rotate(7deg)}
+}
+
+.glass-jar.shake{
+animation:jarShake .5s ease;
+}
+
+/* FINAL */
+
+.final-content{
+width:min(650px,100%);
+margin:auto;
+}
+
+#final{justify-content:center}
+
+.final-heart{
+font-size:65px;
+color:var(--dark-pink);
+margin:20px;
+}
+
+.final-message{
+font-family:'Playfair Display',serif;
+font-size:18px;
+line-height:2;
+color:#806b76;
+margin:18px 0;
+}
+
+.final-sign{
+font-family:'Caveat',cursive;
+font-size:33px;
+color:var(--dark-pink);
+margin:25px;
+}
+
+.final-choices{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:12px;
+margin-top:20px;
+}
+
+.final-choices button{
+border:0;
+border-radius:30px;
+padding:13px 20px;
+background:#b97990;
+color:white;
+font-size:12px;
+transition:.25s;
+}
+
+.final-choices button:hover{transform:translateY(-3px)}
+
+.final-choices .time-choice{
+background:#e9dce9;
+color:#805c6d;
+}
+
+.final-response{
+min-height:45px;
+margin-top:17px;
+font:22px/1.4 'Caveat',cursive;
+color:#a96d83;
+}
+
+/* POPUP */
+
+.modal{
+display:none;
+position:fixed;
+inset:0;
+z-index:20;
+background:#4b354c75;
+padding:20px;
+align-items:center;
+justify-content:center;
+}
+
+.modal.show{display:flex}
+
+.modal-paper{
+background:var(--paper);
+max-width:430px;
+width:100%;
+padding:40px 30px;
+text-align:center;
+position:relative;
+box-shadow:0 15px 40px #0002;
+}
+
+.close-btn{
+position:absolute;
+right:15px;
+top:10px;
+border:0;
+background:none;
+font-size:28px;
+color:var(--dark-pink);
+}
+
+.modal-flower{
+display:block;
+font-size:35px;
+color:var(--pink);
+}
+
+.modal-paper h2{
+font-family:'Playfair Display',serif;
+font-size:28px;
+margin:15px 0;
+}
+
+.modal-paper p{
+font-size:16px;
+line-height:1.9;
+color:var(--text);
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+.topbar{
+height:40px;
+padding:0 12px;
+font-size:7px;
+letter-spacing:1px;
+}
+
+.screen{
+min-height:calc(100vh - 40px);
+padding:24px 14px 42px;
+}
+
+.home-content h1{
+font-size:clamp(39px,10vw,55px);
+}
+
+.home-description{
+font-size:14px;
+max-width:320px;
+}
+
+.envelope{
+width:170px;
+height:115px;
+margin:22px auto 12px;
+}
+
+.flower{left:5%;top:8%}
+.heart-decoration{right:5%;top:20%}
+
+.memory-grid{
+grid-template-columns:repeat(2,minmax(0,1fr));
+gap:13px;
+}
+
+.photo-card{padding:6px 6px 15px}
+.photo-card span{font-size:16px}
+
+.notes-grid{
+grid-template-columns:1fr;
+gap:12px;
+max-width:360px;
+margin:15px auto;
+}
+
+.note-card{
+min-height:90px;
+flex-direction:row;
+justify-content:flex-start;
+padding:12px 20px;
+gap:14px;
+}
+
+.note-card span{font-size:28px}
+.note-card strong{font-size:15px}
+
+.diary-book{padding:7px}
+
+.diary-page{
+height:58vh;
+min-height:360px;
+max-height:540px;
+padding:20px 18px;
+}
+
+.diary-page h3{font-size:25px}
+
+.page-content{
+font-size:19px;
+line-height:1.7;
+}
+
+.page-signature{font-size:24px}
+.diary-controls{font-size:10px}
+
+.universe-box{
+height:43vh;
+min-height:250px;
+}
+
+.moon{font-size:48px}
+.universe-star{font-size:25px}
+
+.glass-jar{
+transform:scale(.9);
+margin:-5px 0;
+}
+
+.glass-jar:hover{transform:scale(.9) translateY(-5px) rotate(4deg)}
+
+.reason-card p{font-size:20px}
+
+.final-content h2{font-size:42px}
+.final-heart{font-size:55px}
+
+.final-message{
+font-size:16px;
+line-height:1.85;
+}
+
+.final-sign{font-size:32px}
+}
+
+@media(max-width:380px){
+.page-content{font-size:17px}
+.memory-grid{gap:10px}
+.home-content h1{font-size:39px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<header class="topbar">
+<span class="brand">A LITTLE BOOK ♡</span>
+<span class="top-label">A BOOK MADE WITH LOVE</span>
+</header>
+
+<main class="screens">
+
+<!-- HOME -->
+<section class="screen active" id="home">
+
+<div class="decoration flower">✿</div>
+<div class="decoration heart-decoration">♡</div>
+<div class="decoration home-star">✧</div>
+
+<div class="home-content">
+<div class="eyebrow">A LITTLE SOMETHING FOR YOU</div>
+
+<h1>A Little Book <em>About Us.</em></h1>
+
+<p class="home-description">
+A tiny collection of memories, feelings and things I wanted you to see.
+</p>
+
+<div class="envelope">
+<div class="envelope-back"></div>
+<div class="envelope-paper">♡</div>
+<div class="envelope-front"></div>
+<div class="envelope-heart">♡</div>
+</div>
+
+<p class="handwritten">Made with love, just for you.</p>
+
+<button class="primary-btn" data-go="memories">
+Open our memories ♡
+</button>
+</div>
+</section>
+
+<!-- MEMORIES -->
+<section class="screen" id="memories">
+
+<div class="section-heading">
+<span class="eyebrow">LITTLE PIECES OF HAPPINESS</span>
+<h2>Our Memories</h2>
+<p>Some moments deserve their own little place.</p>
+</div>
+
+<div class="memory-grid">
+
+<div class="photo-card">
+<img src="images/photo1.jpg" alt="Memory 1">
+<span>Little moments ♡</span>
+</div>
+
+<div class="photo-card">
+<img src="images/photo2.jpg" alt="Memory 2">
+<span>Our smiles</span>
+</div>
+
+<div class="photo-card">
+<img src="images/photo3.jpg" alt="Memory 3">
+<span>Sweet memories</span>
+</div>
+
+<div class="photo-card">
+<img src="images/photo4.jpg" alt="Memory 4">
+<span>Just us</span>
+</div>
+
+<div class="photo-card">
+<img src="images/photo5.jpg" alt="Memory 5">
+<span>Unforgettable</span>
+</div>
+
+<div class="photo-card">
+<img src="images/photo6.jpg" alt="Memory 6">
+<span>My favourite days</span>
+</div>
+
+</div>
+
+<button class="primary-btn" data-go="notes">
+Turn the page ♡
+</button>
+
+</section>
+
+<!-- NOTES -->
+<section class="screen" id="notes">
+
+<div class="section-heading">
+<span class="eyebrow">SOMETHING FROM MY HEART</span>
+<h2>Little Notes</h2>
+<p>Open whichever letter your heart chooses.</p>
+</div>
+
+<div class="notes-grid">
+
+<button class="note-card" data-note="0">
+<span>🌷</span>
+<strong>A little reminder</strong>
+<small>Open this letter</small>
+</button>
+
+<button class="note-card" data-note="1">
+<span>💌</span>
+<strong>Things I adore</strong>
+<small>Open this letter</small>
+</button>
+
+<button class="note-card" data-note="2">
+<span>🧸</span>
+<strong>Something special</strong>
+<small>Open this letter</small>
+</button>
+
+</div>
+
+<button class="primary-btn" data-go="diary">
+Read my diary ♡
+</button>
+
+</section>
+
+<!-- DIARY -->
+<section class="screen" id="diary">
+
+<div class="section-heading">
+<span class="eyebrow">WORDS I WANTED YOU TO READ</span>
+<h2>My Little Diary</h2>
+<p>Every page has a little piece of my heart.</p>
+</div>
+
+<div class="diary-book">
+
+<div class="diary-page">
+<div class="page-number" id="pageNumber">01 / 04</div>
+<h3 id="diaryTitle"></h3>
+<div class="page-content" id="diaryContent"></div>
+<div class="page-signature">♡ Yash</div>
+</div>
+
+<div class="diary-controls">
+<button id="prevPage">← Previous</button>
+<span id="diaryCounter">1 of 4</span>
+<button id="nextPage">Next →</button>
+</div>
+
+</div>
+
+<button class="primary-btn continue-btn" data-go="universe">
+Explore our little universe ♡
+</button>
+
+</section>
+
+<!-- OUR LITTLE UNIVERSE -->
+<section class="screen" id="universe">
+
+<div class="section-heading">
+<span class="eyebrow">SOMEWHERE IN OUR UNIVERSE</span>
+<h2>Our Little <i>Universe</i></h2>
+<p>Some stars hold little pieces of my heart.</p>
+</div>
+
+<div class="universe-box">
+
+<div class="moon">☾</div>
+
+<button class="universe-star s1" data-message="You make even my ordinary days feel special.">✦</button>
+<button class="universe-star s2" data-message="Diyuu your smile is one of my favourite things in this world.">✧</button>
+<button class="universe-star s3" data-message="If I could make one wish upon every star, I'd wish for a thousand more moments with you.">✦</button>
+<button class="universe-star s4" data-message="If I could pause one moment, it would be a happy moment with you.">✧</button>
+<button class="universe-star s5" data-message="No matter how far stars are, I hope we always find our way back to understanding each other.">✦</button>
+<button class="universe-star s6" data-message="I hope life gives us many more beautiful moments together.">✧</button>
+<button class="universe-star s7" data-message="Even the smallest memories with you matter to me.">✦</button>
+<button class="universe-star s8" data-message="Our best memories are still waiting for us in the future.">✧</button>
+
+<div class="universe-message" id="starMessage">
+<span>✧</span>
+<p>Tap any star to discover a little message...</p>
+</div>
+
+</div>
+
+<button class="main-btn" data-go="jar">
+Discover something else ♡
+</button>
+
+</section>
+
+<!-- OUR FUTURE PLANS JAR -->
+<section class="screen" id="jar">
+
+<div class="section-heading">
+<span class="eyebrow">A LITTLE DREAM OF OURS ♡</span>
+<h2>Our Future <i>Plans.</i></h2>
+<p>20 little dreams I'd love to experience with you.<br>
+Maybe someday, these dreams will become our memories.</p>
+</div>
+
+<div class="jar-area">
+
+<div class="jar-count" id="jarCount">
+20 little dreams waiting for us ♡
+</div>
+
+<button class="glass-jar" id="openJar" aria-label="Open our future plans jar">
+<span class="jar-lid"></span>
+<span class="jar-neck"></span>
+<span class="jar-body">
+<span class="jar-heart">♡</span>
+<span class="jar-paper">✧ ♥ ✧</span>
+<span class="jar-label">Our Dreams</span>
+</span>
+</button>
+
+<p class="jar-instruction">
+Tap the jar to discover our next little dream ♡
+</p>
+
+<div class="reason-card" id="reasonCard">
+<span>💌</span>
+<p id="reasonText">Our little adventure will appear here...</p>
+<small id="reasonNumber"></small>
+</div>
+
+<button class="jar-action" id="anotherReason">
+Pick another dream ✧
+</button>
+
+<p class="jar-footer">
+One day, one dream at a time.<br>
+With love, Yash ♡
+</p>
+
+</div>
+
+<button class="primary-btn" data-go="final">
+One last thing ♡
+</button>
+
+</section>
+
+<!-- FINAL -->
+<section class="screen" id="final">
+
+<div class="final-content">
+
+<span class="eyebrow">AND BEFORE YOU GO...</span>
+
+<h2>One Last Thing.</h2>
+
+<div class="final-heart">♡</div>
+
+<p class="final-message">
+I don't expect everything to become perfect overnight.
+I just hope we can keep understanding each other,
+rebuilding our trust and making new memories,
+one little moment at a time and won't leave each other.
+</p>
+
+<p class="final-message">
+You matter to me, and I hope whatever comes next
+brings both of us happiness, peace and genuine smiles.
+I hope that we were together as soon as possible,
+because I need your lovee so badly.
+I just want to be honest about mine.
+</p>
+
+<p class="final-message">
+So, if your heart feels the same,
+would you like to give us a chance
+to build something beautiful together?
+</p>
+
+<div class="final-sign">Always, Yash ♡</div>
+
+<div class="final-choices">
+<button id="yesChoice">Yes, let's give us a chance ♡</button>
+<button class="time-choice" id="timeChoice">I need a little time</button>
+</div>
+
+<p class="final-response" id="finalResponse" aria-live="polite"></p>
+
+<button class="primary-btn" data-go="home">
+Read it again ♡
+</button>
+
+</div>
+</section>
+
+</main>
+</div>
+
+<!-- NOTE POPUP -->
+<div class="modal" id="noteModal">
+
+<div class="modal-paper">
+<button class="close-btn" id="closeModal">×</button>
+<span class="modal-flower">✿</span>
+<h2 id="modalTitle">A little note</h2>
+<p id="modalText"></p>
+<div class="handwritten">With love, Yash ♡</div>
+</div>
+
+</div>
+
+<script>
+
+/* SCREEN NAVIGATION */
+
+const screenElements = [...document.querySelectorAll('.screen')];
+
+function goTo(screenId){
+screenElements.forEach(screen => {
+screen.classList.toggle('active', screen.id === screenId);
+});
+
+const selected = document.getElementById(screenId);
+
+if(selected){
+selected.scrollTop = 0;
+}
+}
+
+document.querySelectorAll('[data-go]').forEach(button => {
+button.addEventListener('click', () => {
+goTo(button.dataset.go);
+});
+});
+
+
+/* DIARY PAGES */
+
+const diaryPages = [
+
+{
+title:'Dear Diya,',
+content:`
+<p>
+I made this little corner because some feelings deserve more than a normal message. I wanted to create something that feels like a piece of my heart and something that could tell you all the things I sometimes struggle to put into words.
+</p>
+
+<p>
+I still wish things had never become so difficult between us, because I miss the way we used to be, our conversations, our moments, trust me I want to keep learning how to love you perfectly and I will.
+</p>
+
+<p>
+You are every thing to me I lovee youu so much and you will always be my top priority and will always come first in my life.
+</p>
+
+<p>
+You have been an important part of my life and I wanted you to have something that reminds you that you are appreciated and cared for.
+</p>
+`
+},
+
+{
+title:'Our Little Story,',
+content:`
+<p>
+When I think about us, I don't just remember the big moments I remember the little things too, the conversations, the jokes that made no sense to anyone else, and those moments when even a normal day felt special.
+</p>
+
+<p>
+Every memory has its own little place in my heart. Some memories still make me smile, and some remind me how much I value you and what we shared.
+</p>
+
+<p>
+I don't want to forget those beautiful moments. I would rather create many more with better understanding and more care for each other.
+</p>
+`
+},
+
+{
+title:'Something I Feel,',
+content:`
+<p>
+Since 11 August, a lot has happened. Things weren't always easy and there were moments when I genuinely missed how comfortable and happy things used to feel.
+</p>
+
+<p>
+But seeing things slowly getting better makes me hopeful. I know that everything cannot return to normal in a single day. Trust, comfort and feelings all deserve time and genuine effort.
+</p>
+
+<p>
+I want to keep showing you through my actions that I value you. Not just through beautiful words, but through patience, honesty and consistency.
+</p>
+`
+},
+
+{
+title:'A New Beginning,',
+content:`
+<p>
+I don't want us to simply return to what we were but I want us to become something even stronger and better. Something where we can communicate openly, understand each other and feel comfortable being ourselves.
+</p>
+
+<p>
+I still have hope for us and I know we will together soon. I still want to make new memories, share countless laughs and experience all those little moments that make life beautiful.
+</p>
+
+<p>
+I won't rush you. I just wanted you to know that what you mean to me is genuine, and this little book comes from the heart.
+</p>
+`
+}
+
+];
+
+let currentPage = 0;
+
+function renderDiary(){
+
+const page = diaryPages[currentPage];
+
+document.getElementById('diaryTitle').textContent = page.title;
+document.getElementById('diaryContent').innerHTML = page.content;
+
+document.getElementById('pageNumber').textContent =
+`0${currentPage + 1} / 0${diaryPages.length}`;
+
+document.getElementById('diaryCounter').textContent =
+`${currentPage + 1} of ${diaryPages.length}`;
+
+document.getElementById('prevPage').disabled = currentPage === 0;
+document.getElementById('nextPage').disabled = currentPage === diaryPages.length - 1;
+
+document.getElementById('diaryContent').scrollTop = 0;
+}
+
+document.getElementById('prevPage').addEventListener('click',()=>{
+if(currentPage > 0){
+currentPage--;
+renderDiary();
+}
+});
+
+document.getElementById('nextPage').addEventListener('click',()=>{
+if(currentPage < diaryPages.length - 1){
+currentPage++;
+renderDiary();
+}
+});
+
+renderDiary();
+
+
+/* LITTLE NOTES */
+
+const notes = [
+
+{
+title:'A Little Reminder 🌷',
+text:'You deserve everything, kindness, happiness and all the little things that make you smile. Never forget that your feelings matter to me as well.'
+},
+
+{
+title:'Things I Adore 💌',
+text:'I adore the little things about you, the way you talk, your thoughts, your smile and all those tiny details that make you uniquely you.'
+},
+
+{
+title:'Something Special 🧸',
+text:'I hope I give you countless reasons to smile. And I hope that whenever you remember this little book, it reminds you of something warm and beautiful and also about me.'
+}
+
+];
+
+const modal = document.getElementById('noteModal');
+
+document.querySelectorAll('[data-note]').forEach(button => {
+button.addEventListener('click',()=>{
+const note = notes[Number(button.dataset.note)];
+
+document.getElementById('modalTitle').textContent = note.title;
+document.getElementById('modalText').textContent = note.text;
+
+modal.classList.add('show');
+});
+});
+
+function closeNote(){
+modal.classList.remove('show');
+}
+
+document.getElementById('closeModal').addEventListener('click',closeNote);
+
+modal.addEventListener('click',event=>{
+if(event.target === modal){
+closeNote();
+}
+});
+
+document.addEventListener('keydown',event=>{
+if(event.key === 'Escape'){
+closeNote();
+}
+});
+
+
+/* OUR LITTLE UNIVERSE */
+
+document.querySelectorAll('.universe-star').forEach(star=>{
+
+star.addEventListener('click',()=>{
+
+const box = document.getElementById('starMessage');
+const message = document.createElement('p');
+
+message.textContent = star.dataset.message;
+
+box.replaceChildren(
+Object.assign(document.createElement('span'),{
+textContent:'✧'
+}),
+message
+);
+
+star.style.color = '#ffb8e1';
+
+});
+
+});
+
+
+/* OUR FUTURE PLANS JAR */
+
+const futurePlans = [
+
+"Our first proper date together, with lots of pictures and laughter. ♡",
+
+"Going on a long drive, listening to our favourite songs.",
+
+"Watching a movie together while sharing popcorn.",
+
+"Celebrating your birthday and making you feel extra special.",
+
+"Watching the aurora lights and kissing youu.",
+
+"Give you evething you need.",
+
+"Taking random pictures and making silly memories.",
+
+"Going on a shopping dates with you.",
+
+"Cooking something new together, even if we mess it up.😂",
+
+"Celebrating every single achievements together.",
+
+"Having a late-night conversation without noticing the time.",
+
+"Travelling somewhere we've always wanted to visit.",
+
+"Building our little world(home) together.",
+
+"Surprising each other on random normal days.",
+
+"Watching the stars together on a peaceful night.",
+
+"Wrapped in one blanket, sharing hot coffee watching the rain together.",
+
+"Exploring new countryies together.",
+
+"Celebrating anniversaries with beautiful memories.",
+
+"Building a future with love, respect and understanding.",
+
+"Growing together and looking back at how far we've come. ♡"
+
+];
+
+let remainingPlans = [...futurePlans];
+let plansOpened = 0;
+
+const openJar = document.getElementById('openJar');
+const anotherReason = document.getElementById('anotherReason');
+const reasonCard = document.getElementById('reasonCard');
+const reasonText = document.getElementById('reasonText');
+const reasonNumber = document.getElementById('reasonNumber');
+const jarCount = document.getElementById('jarCount');
+
+function pickFuturePlan(){
+
+if(remainingPlans.length === 0){
+remainingPlans = [...futurePlans];
+plansOpened = 0;
+}
+
+const randomIndex = Math.floor(
+Math.random() * remainingPlans.length
+);
+
+const selectedPlan = remainingPlans.splice(randomIndex,1)[0];
+
+plansOpened++;
+
+reasonText.textContent = selectedPlan;
+
+reasonNumber.textContent =
+`Dream ${plansOpened} of ${futurePlans.length} ♡`;
+
+jarCount.textContent =
+`${remainingPlans.length} little dreams waiting for us ♡`;
+
+reasonCard.classList.remove('show');
+
+requestAnimationFrame(()=>{
+reasonCard.classList.add('show');
+});
+
+openJar.classList.remove('shake');
+void openJar.offsetWidth;
+openJar.classList.add('shake');
+
+}
+
+openJar.addEventListener('click',pickFuturePlan);
+anotherReason.addEventListener('click',pickFuturePlan);
+
+
+/* FINAL QUESTION */
+
+document.getElementById('yesChoice').addEventListener('click',()=>{
+
+document.getElementById('finalResponse').textContent =
+"That means a lot to me. Let's take this new beginning one beautiful day at a time. ♡";
+
+});
+
+document.getElementById('timeChoice').addEventListener('click',()=>{
+
+document.getElementById('finalResponse').textContent =
+"That's okay take the time you need. Your feelings matter to me, and I won't rush just tell me how much🥹. ♡";
+
+});
+
+</script>
+
+</body>
+</html>
